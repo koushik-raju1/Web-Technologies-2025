@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="libraryApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Book Categories</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+    <style>
+        table { width: 50%; margin: 20px auto; border-collapse: collapse; }
+        table, th, td { border: 1px solid black; }
+        th, td { padding: 10px; text-align: center; }
+        .error { color: red; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <div ng-controller="LibraryController">
+        <h1 style="text-align:center;">Library Book Categories</h1>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Books Available</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in library">
+                    <td>{{item.category}}</td>
+                    <td><input type="number" ng-model="item.count" /></td>
+                </tr>
+            </tbody>
+        </table>
+
+       
+        <div>
+            <input type="text" ng-model="newCategory.name" placeholder="New Category Name" />
+            <input type="number" ng-model="newCategory.count" placeholder="Initial Book Count" />
+            <button ng-click="addCategory()">Add Category</button>
+            <div class="error" ng-if="categoryError">{{categoryError}}</div>
+        </div>
+    </div>
+
+</body>
+</html>

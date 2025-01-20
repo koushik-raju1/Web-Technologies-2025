@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="movieRentalApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Rental Store</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+    <style>
+        table { width: 80%; margin: 20px auto; border-collapse: collapse; }
+        table, th, td { border: 1px solid black; }
+        th, td { padding: 10px; text-align: center; }
+        .error { color: red; font-size: 12px; }
+        select, input[type="text"] { margin: 5px; padding: 5px; }
+    </style>
+</head>
+<body>
+
+<div ng-controller="MovieController">
+
+    <h1 style="text-align:center;">Movie Rental Store</h1>
+    
+    <div style="text-align:center;">
+        <label>Filter by Genre: </label>
+        <select ng-model="selectedGenre" ng-options="genre for genre in genres">
+            <option value="">All Genres</option>
+        </select>
+        
+        <label>Filter by Year: </label>
+        <select ng-model="selectedYear" ng-options="year for year in years">
+            <option value="">All Years</option>
+        </select>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Year</th>
+                <th>Rental Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="movie in filteredMovies()">
+                <td>{{movie.title}}</td>
+                <td>{{movie.genre}}</td>
+                <td>{{movie.year}}</td>
+                <td>{{getRentalPrice(movie.year) | currency}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="text-align:center;">
+        <h3>Add New Movie</h3>
+        <input type="text" ng-model="newMovie.title" placeholder="Movie Title" />
+        <input type="text" ng-model="newMovie.genre" placeholder="Genre" />
+        <input type="number" ng-model="newMovie.year" placeholder="Release Year" />
+        <button ng-click="addMovie()">Add Movie</button>
+        <div class="error" ng-if="error">{{error}}</div>
+    </div>
+
+</div>
+
+</body>
+</html>
