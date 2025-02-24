@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <title>Simple Registration Form</title>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <h3>Registration Form</h3>
+
+        <!-- Name -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" ng-model="user.name">
+        <br><br>
+
+        <!-- Email -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" ng-model="user.email">
+        <br><br>
+
+        <!-- Password -->
+        <label for="password">Password:</label>
+        <input type="password" id="password" ng-model="user.password">
+        <br><br>
+
+        <!-- Confirm Password -->
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" ng-model="user.confirmPassword">
+        <br><br>
+
+        <!-- Submit Button -->
+        <button ng-click="submitForm()">Register</button>
+
+        <!-- Display Message -->
+        <p ng-if="message">{{ message }}</p>
+    </div>
+
+    <script>
+        // Define the AngularJS application
+        var app = angular.module('myApp', []);
+
+        // Define the controller
+        app.controller('myCtrl', function($scope) {
+            $scope.user = {}; // Initialize user object
+
+            $scope.submitForm = function() {
+                // Check if passwords match
+                if ($scope.user.password !== $scope.user.confirmPassword) {
+                    $scope.message = "Passwords do not match!";
+                } else {
+                    $scope.message = "Registration successful!";
+                    console.log("User Data:", $scope.user);
+                }
+            };
+        });
+    </script>
+</body>
+</html>
