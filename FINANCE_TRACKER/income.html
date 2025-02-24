@@ -1,0 +1,14 @@
+<div class="container">
+    <h2>Income</h2>
+    <form ng-submit="addIncome()">
+        <input type="text" ng-model="newIncome.description" placeholder="Income Source" required>
+        <input type="number" ng-model="newIncome.amount" placeholder="Amount" required>
+        <button type="submit">Add Income</button>
+    </form>
+    <h3>Income Records</h3>
+    <ul>
+        <li ng-repeat="income in income">
+            {{ income.description }} - ₹{{ income.amount }}
+        </li>
+    </ul>
+</div>
