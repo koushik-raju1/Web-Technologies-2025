@@ -1,0 +1,12 @@
+<div>
+    <h2>Favorite Cities</h2>
+    <ul>
+        <li ng-repeat="city in favorites">
+            <strong>{{ city }}</strong>: 
+            <span ng-if="weatherDetails[city]">
+                {{ weatherDetails[city].main.temp }}°C, 
+                {{ weatherDetails[city].weather[0].description }}
+            </span>
+        </li>
+    </ul>
+</div>
