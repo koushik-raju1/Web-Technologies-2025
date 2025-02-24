@@ -1,0 +1,16 @@
+<div>
+    <h2>Weather Dashboard</h2>
+    <input type="text" ng-model="city" placeholder="Enter city name">
+    <button ng-click="getWeather()">Get Weather</button>
+    
+    <div ng-if="error">{{ error }}</div>
+    
+    <div ng-if="weatherData">
+        <h3>{{ weatherData.name }}</h3>
+        <p>Temperature: {{ weatherData.main.temp }}°C</p>
+        <p>Humidity: {{ weatherData.main.humidity }}%</p>
+        <p>Condition: {{ weatherData.weather[0].description }}</p>
+        <button ng-click="addFavorite()">Add to Favorites</button>
+    </div>
+</div>
+
